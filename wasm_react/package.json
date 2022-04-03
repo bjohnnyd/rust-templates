@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack server",
     "build:wasm": "cargo build --target wasm32-unknown-unknown",
-    "build:bindgen": "wasm bindgen target/wasm32-unknown-unknown/debug/{{crate_name}}.wasm --out-dir build",
+    "build:bindgen": "wasm-bindgen target/wasm32-unknown-unknown/debug/{{crate_name}}.wasm --out-dir build",
     "build": "npm run build:wasm && npm run build:bindgen && npx webpack"
   },
   "keywords": [],

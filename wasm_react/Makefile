@@ -25,20 +25,21 @@ clippy: src/**rs # lint rust code
         --all-features -q \
         -- -D warnings
 
-npm__init: # needs to be only ran once to install everything
+npm__init node_modules/**: # needs to be only ran once to install everything
 	npm i
+
 add__wasm: # add wasm target to rustup
 	rustup target add wasm32-unknown-unknown
 
-target/wasm32-unknown-unknown/debug/{{crate_name}}.wasm:
+target/wasm32-unknown-unknown/debug/{{crate_name}}.wasm: src/**rs
 	cargo build --target wasm32-unknown-unknown
 
 wrap_rust: target/wasm32-unknown-unknown/debug/{{crate_name}}.wasm # wrapts the rust generated target to prepare for react code
 	wasm-bindgen target/wasm32-unknown-unknown/debug/{{crate_name}}.wasm --out-dir build
 
-npm__build: # 
+build/**: node_modules/** # builds the package
 	npm run build
-start: # serve npm server on http://127.1:8080
+start: build/** # serve npm server on http://127.1:8080
 	npm run dev
 
 clean: # Cleans all intermediate or final entities
