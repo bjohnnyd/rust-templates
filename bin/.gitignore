@@ -1,0 +1,13 @@
+/target
+/oxo/target
+**.txt
+/doc
+/**.svg
+/**.data
+/.idea
+/.README.template
+/themes
+/public
+/sass
+/content
+/templates
