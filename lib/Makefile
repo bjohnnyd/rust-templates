@@ -12,7 +12,7 @@ RUST_VERSION ?= 1.56.1
 help: # Generates a list of all targets with their descriptions
 	@grep ":" ./Makefile | awk "/#/ && !/grep/" | sed -E 's/(.+:).*#(.+)/\x1b[36m\1\x1b[0m\2/g'
 
-all: fmt test clippy check # format, test and lint
+all: get__msrv fmt test clippy check # format, test and lint
 
 check: src/**rs # check if it builds
 	cargo check
