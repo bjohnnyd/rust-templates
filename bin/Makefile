@@ -6,6 +6,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 RUST_VERSION ?= 1.56.1
+DOC_PORT ?= 8000
 
 .PHONY: help all get__msrv
 
@@ -37,6 +38,11 @@ rust-toolchain.toml get__msrv: # Creates a toolchain file with the MSRV checked,
 tree: # Shows the global feature dependency tree
 	cargo install cargo-tree
 	cargo tree
+
+serve__docs: # starts a doc server on $DOC_PORT, defaults to 8000
+	cargo install cargo-docserver
+	cargo doc
+	cargo docserver -p $(DOC_PORT)
 
 clean: # Cleans all intermediate or final entities
 	@rm -r target || true
