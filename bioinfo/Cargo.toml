@@ -17,6 +17,13 @@ log = "*"
 pretty_env_logger = "*"
 anyhow = "*"
 thiserror = "*"
+## To have htslib dependency
+rust-htslib = { version = "*", default-features = false] }
+bio = "*"
+# Or not, that is the question
+noodles = { version = "*", features = ["bam", "vcf", "bgzf"] }
+plotters = {version = "*", default-features = false }
+
 
 [dev-dependencies]
 predicates = "*"
